@@ -1,0 +1,50 @@
+version: 2
+
+sources:
+  - name: TPCH_SF1
+    database: SNOWFLAKE_SAMPLE_DATA 
+    schema: TPCH_SF1
+    tables:
+      - name: customer
+        description: Información del cliente, incluyendo datos demográficos y saldo de cuenta.
+        columns:
+          - name: c_custkey
+            description: Clave primaria de la tabla de clientes
+            tests:
+              - not_null
+              - unique
+
+          - name: c_mktsegment
+            description: Segmento de mercado del cliente
+            tests:
+              - accepted_values:
+                  values: ['AUTOMOBILE', 'BUILDING', 'FURNITURE', 'MACHINERY', 'HOUSEHOLD']
+              - not_null
+
+          - name: c_name
+            description: Nombre del cliente
+            tests:
+              - not_null
+
+      - name: orders
+        description: Pedidos realizados por los clientes.
+
+      - name: lineitem
+        description: Ítems de cada pedido, incluyendo información sobre cantidad y precio.
+
+      - name: part
+        description: Detalles sobre las piezas que se venden.
+
+      - name: supplier
+        description: Información de los proveedores, incluyendo país y datos de contacto.
+
+      - name: nation
+        description: Naciones referenciadas por clientes y proveedores.
+
+      - name: region
+        description: Regiones que agrupan a las naciones.
+
+      - name: partsupp
+        description: Tabla de relación entre piezas y proveedores. Cada registro indica una pieza suministrada
+          por un proveedor específico, junto con la cantidad disponible y el coste de suministro.
+
