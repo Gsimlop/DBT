@@ -1,0 +1,63 @@
+
+version: 2
+
+models:
+  - name: stg_customer
+    description: Staging para tabla de clientes y aplicamos tests a ciertas columnas
+    columns:
+      - name: customer_key
+        tests: [not_null, unique]
+      - name: nation_key
+        tests: [not_null]
+
+  - name: stg_orders
+    description: Staging para tabla de pedidos y aplicamos tests a ciertas columnas
+    columns:
+      - name: order_key
+        tests: [not_null, unique]
+      - name: customer_key
+        tests: [not_null]
+
+  - name: stg_lineitem
+    description: Staging para los ítems de cada pedido y aplicamos tests a ciertas columnas
+    columns:
+      - name: order_key
+        tests: [not_null]
+      - name: line_number
+        tests: [not_null]
+
+  - name: stg_part
+    description: Staging para la información de partes y aplicamos tests a ciertas columnas
+    columns:
+      - name: part_key
+        tests: [not_null, unique]
+
+  - name: stg_supplier
+    description: Staging para proveedores y aplicamos tests a ciertas columnas
+    columns:
+      - name: supplier_key
+        tests: [not_null, unique]
+      - name: nation_key
+        tests: [not_null]
+
+  - name: stg_nation
+    description: Staging para naciones y aplicamos tests a ciertas columnas
+    columns:
+      - name: nation_key
+        tests: [not_null, unique]
+      - name: region_key
+        tests: [not_null]
+
+  - name: stg_region
+    description: Staging para regiones y aplicamos tests a ciertas columnas
+    columns:
+      - name: region_key
+        tests: [not_null, unique]
+
+  - name: stg_partsupp
+    description: Staging para relación entre partes y proveedores y aplicamos tests a ciertas columnas
+    columns:
+      - name: part_key
+        tests: [not_null]
+      - name: supplier_key
+        tests: [not_null]
